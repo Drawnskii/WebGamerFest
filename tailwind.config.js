@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         montserrat: ["Montserrat", "sans-serif"],
+        mukta: ["Mukta", "sans-serif"],
       },
       colors: {
         "light-purple": "#6642B1",
