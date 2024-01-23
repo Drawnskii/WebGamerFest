@@ -20,7 +20,7 @@ function Registro() {
   };
 
   return (
-    <div className="bg-dark-purple p-8 rounded-md w-96">
+    <div className="absolute bg-dark-purple p-8 rounded-md w-96">
       <div className="mb-8 flex justify-center">
         <h1 className="text-3xl uppercase font-bold  text-white">
           Crear Cuenta
