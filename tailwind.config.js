@@ -13,6 +13,11 @@ export default {
         "sky-blue": "#72E3FF",
         "light-green": "#5CE8B1",
       },
+      backgroundImage: {
+        "login-1": "url('./public/img/Login_1.jpg')",
+        "login-2": "url('./public/img/Login_2.jpg')",
+        "login-3": "url('./public/img/Login_3.jpg')",
+      },
     },
   },
   plugins: [],

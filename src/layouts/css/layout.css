@@ -1,0 +1,27 @@
+.gradiente {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    45deg,
+    #0c0c0c,
+    #831187,
+    #2e1d4b,
+    #3e0c76,
+    #9572ff,
+    #6642b1
+  );
+  background-size: 300% 300%;
+  animation: color 15s ease infinite;
+}
+
+@keyframes color {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

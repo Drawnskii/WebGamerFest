@@ -1,60 +1,47 @@
-import React, { useState } from "react";
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
+/* Librerías de react */
+import { Link } from "react-router-dom";
+
+/* Importación de componentes */
+import Contrasenia from "./components/Contrasenia";
+import Email from "./components/Email";
+
+/* Importación de estilos css */
+import "../css/background.css";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
-
   return (
-    <div className="absolute bg-dark-purple p-8 rounded-lg w-96">
-      <div className="mb-4">
-        <h1 className="text-white text-3xl uppercase font-bold text-center">INICIAR SESIÓN</h1>
-      </div>
-      <form className="flex flex-col gap-4">
-      <div className="mb-2">
-      <label htmlFor="txtPassword" className=" text-white">
-            Correo Electrónico:
-          </label>
-        <div className="relative">
-          <FaEnvelope className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-          <input
-            type="email"
-            id="email"
-            placeholder="Correo electrónico"
-            className="w-full pl-10 border border-gray-200 outline-none py-2 px-4 rounded-lg "
-          />
-        </div>
-      </div>
-      <div className="mb-2">
-      <label htmlFor="txtPassword" className=" text-white">
-            Contraseña:
-          </label>
-        <div className="relative">
-          <FaLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" />
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            placeholder="Contraseña"
-            className="w-full pl-10 border border-gray-200 outline-none py-2 px-4 rounded-lg"
-          />
-          <div
-            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
-            onClick={togglePasswordVisibility}
-          >
-            {showPassword ? <FaEyeSlash /> : <FaEye />}
+    <div className="absolute sombra">
+      <div className="grid grid-cols-2">
+        <div className="glass p-8 rounded-l-lg w-96">
+          <div className="mb-8 flex justify-center">
+            <h1 className="text-3xl uppercase font-bold  text-white">
+              INICIAR SESIÓN
+            </h1>
           </div>
+          <form>
+            <Email />
+            <Contrasenia
+              label={"Contraseña:"}
+              placeholder={"Ingrese su contraseña"}
+            />
+            <div>
+              <button className="bg-light-green rounded-md text-dark-purple w-full py-2 mt-4">
+                Ingresar
+              </button>
+            </div>
+            <div className="mt-4 text-center text-white">
+              ¿No tienes una cuenta?{" "}
+              <Link
+                to="/registro"
+                className="text-light-green font-semibold hover:underline transition-all"
+              >
+                Regístrate aquí
+              </Link>
+            </div>
+          </form>
         </div>
+        <div className="bg-login-1 bg-cover rounded-r-lg bg-center w-full"></div>
       </div>
-        <div>
-          <button className="bg-light-green rounded-md text-bg-dark-purple w-full py-2 px-6">Ingresar</button>
-        </div>
-        <div className="text-center text-white">
-          ¿No tienes una cuenta? <a href="/registro" className="text-light-green font-semibold">Regístrate aquí</a>.
-        </div>
-      </form>
     </div>
   );
 };
