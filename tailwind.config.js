@@ -14,9 +14,9 @@ export default {
         "light-green": "#5CE8B1",
       },
       backgroundImage: {
-        "login-1": "url('./public/img/Login_1.jpg')",
-        "login-2": "url('./public/img/Login_2.jpg')",
-        "login-3": "url('./public/img/Login_3.jpg')",
+        "login-1": "url('./img/Login_1.jpg')",
+        "login-2": "url('./img/Login_2.jpg')",
+        "login-3": "url('./img/Login_3.jpg')",
       },
     },
   },
