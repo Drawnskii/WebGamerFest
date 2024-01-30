@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 /* Importación de componentes */
-import Contrasenia from "./components/Contrasenia";
-import Email from "./components/Email";
+import Contrasenia from "../../components/Contrasenia";
+import Email from "../../components/Email";
 
 /* Importación de estilos css */
 import "../css/background.css";

@@ -1,33 +1,61 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+// Importaciones de React Router y React
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useContext } from "react";
 
 /* Layouts */
-import AuthLayout from "./layouts/auth/AuthLayout";
-import HomeLayout from "./layouts/home/HomeLayout";
+import AuthLayout from "./layouts/auth/AuthLayout"; // Layout de autenticación
+import HomeLayout from "./layouts/home/HomeLayout"; // Layout de la página de inicio
 
 /* Pages */
-import Login from "./Pages/auth/Login";
-import Registro from "./Pages/auth/Registro";
-import Error404 from "./Pages/404";
-import VentanaPrincipal from "./Pages/home/VentanaPrincipal";
+import Login from "./Pages/auth/Login"; // Página de inicio de sesión
+import Registro from "./Pages/auth/Registro"; // Página de registro
+import Error404 from "./Pages/404"; // Página de error 404
+import VentanaPrincipal from "./Pages/home/VentanaPrincipal"; // Página principal del home
+
+/* Componentes */
+import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
 
 /* Aquí se importa el componente al que se le quiere agregar una ruta */
 
 function App() {
+  // Obtener el estado de autenticación del contexto
+  const { currentUser } = useContext(AuthContext);
+
+  // Componente que requiere autenticación para acceder
+  const RequireAuth = ({ children }) => {
+    // Si hay un usuario autenticado, renderiza los componentes hijos
+    // De lo contrario, redirige a la página de inicio
+    return currentUser ? children : <Navigate to="/" />;
+  };
+
+  console.log(currentUser);
+
+  // Renderizado de las rutas de la aplicación
   return (
     <BrowserRouter>
       <Routes>
+        {/* Rutas para el layout de autenticación */}
         <Route path="/" element={<AuthLayout />}>
-          <Route index element={<Login />} />
-          <Route path="registro" element={<Registro />} />
+          <Route index element={<Login />} /> {/* Página de inicio de sesión */}
+          <Route path="registro" element={<Registro />} />{" "}
+          {/* Página de registro */}
         </Route>
-        <Route path="/home/" element={<HomeLayout/>}>
-          <Route path="ventana" element={<VentanaPrincipal />} />
+        {/* Rutas para el layout de la página de inicio */}
+        <Route path="/home/" element={<HomeLayout />}>
+          {/* Ruta protegida que requiere autenticación */}
+          <Route
+            path="inicio"
+            element={
+              <RequireAuth>
+                <VentanaPrincipal /> {/* Página principal del home */}
+              </RequireAuth>
+            }
+          />
         </Route>
+        {/* Ruta para manejar errores 404 */}
         <Route path="*" element={<Error404 />} />
       </Routes>
-      
     </BrowserRouter>
-    
   );
 }
 

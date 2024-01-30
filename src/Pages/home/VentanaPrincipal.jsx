@@ -4,11 +4,11 @@ import Baner from "./Baner";
 
 function VentanaPrincipal() {
   return (
-    <div class="flex">
-      <div class="flex-initial w-[395px]">
+    <div className="flex">
+      <div className="flex-initial w-[395px]">
         <Sidebar />
       </div>
-      <div class="flex-initial w-full">
+      <div className="flex-initial w-full">
         <div className="flex flex-col">
           <Baner />
           <div className="rounded-lg m-2 text-white bg-black">

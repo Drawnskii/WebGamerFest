@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { FaEyeSlash, FaEye, FaLock } from "react-icons/fa";
 
-function Contrasenia({ label, placeholder }) {
+function Contrasenia({ label, placeholder, onChange }) {
   // Función para cambiar el estado de los campos contraseña
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => {
@@ -18,6 +18,7 @@ function Contrasenia({ label, placeholder }) {
           type={showPassword ? "text" : "password"}
           className="w-full outline-none rounded-md px-8 py-2"
           placeholder={placeholder}
+          onChange={onChange} // Aquí se pasa el onChange
         />
         {/* Control del estado, del ícono para mostrar contraseña */}
         {showPassword ? (
