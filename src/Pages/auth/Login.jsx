@@ -34,6 +34,7 @@ const Login = () => {
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
         navigate("/home/inicio");
+        console.log(user);
       })
       .catch((error) => {
         // Errores en caso de no exita dicha cuenta

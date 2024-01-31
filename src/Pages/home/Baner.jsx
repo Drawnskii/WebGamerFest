@@ -1,5 +1,3 @@
-import React from "react";
-
 /* Importación de estilos css */
 import "../css/background.css";
 import "./Baner.css";

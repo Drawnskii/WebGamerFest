@@ -28,7 +28,9 @@ function App() {
     return currentUser ? children : <Navigate to="/" />;
   };
 
-  console.log(currentUser);
+  const RequireNoAuth = ({ children }) => {
+    return currentUser ? <Navigate to="/home/inicio" /> : children;
+  };
 
   // Renderizado de las rutas de la aplicación
   return (
@@ -36,8 +38,23 @@ function App() {
       <Routes>
         {/* Rutas para el layout de autenticación */}
         <Route path="/" element={<AuthLayout />}>
-          <Route index element={<Login />} /> {/* Página de inicio de sesión */}
-          <Route path="registro" element={<Registro />} />{" "}
+          <Route
+            index
+            element={
+              <RequireNoAuth>
+                <Login />
+              </RequireNoAuth>
+            }
+          />{" "}
+          {/* Página de inicio de sesión */}
+          <Route
+            path="registro"
+            element={
+              <RequireNoAuth>
+                <Registro />
+              </RequireNoAuth>
+            }
+          />{" "}
           {/* Página de registro */}
         </Route>
         {/* Rutas para el layout de la página de inicio */}
