@@ -1,29 +1,30 @@
 import { useState, useEffect } from "react";
-import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
 
 function SelectorColecciones({ label, coleccion, onChange }) {
-  // Estado para almacenar la lista de un coleccion
   const [lista, setLista] = useState([]);
 
-  // Función para cargar las colecciones desde Firestore al montar el componente
   useEffect(() => {
     const cargarLista = async () => {
       try {
-        // Obtener una colecion desde Firestore
-        const coleccionSnapshot = await getDocs(collection(db, coleccion));
-        const datosColeccion = coleccionSnapshot.docs.map((doc) => ({
-          id: doc.id,
-          nombre: doc.data().nombre,
-        }));
-        setLista(datosColeccion);
+        let listaDefault = [
+          { id: 1, nombre: "provincias" },
+          { id: 2, nombre: "instituciones" },
+          { id: 3, nombre: "usuarios" },
+        ];
+
+        // Si se proporciona una colección, utiliza los datos de esa colección
+        if (coleccion) {
+          // Lógica para cargar datos desde la colección
+        } else {
+          setLista(listaDefault);
+        }
       } catch (error) {
         console.error(`Error al cargar la colección: ${coleccion}`, error);
       }
     };
 
     cargarLista();
-  }, [coleccion]); // Agrega coleccion como una dependencia del efecto
+  }, [coleccion]);
 
   return (
     <div className="mb-2">
@@ -33,14 +34,12 @@ function SelectorColecciones({ label, coleccion, onChange }) {
           className="w-full outline-none rounded-md pl-2 pr-2 py-2"
           onChange={onChange}
         >
-          {/* Agregar una opción para "Seleccione..." */}
           <option key="seleccione" value="">
             Seleccione...
           </option>
-          {/* Mapear las instituciones cargadas desde Firestore */}
-          {lista.map((tupla) => (
-            <option key={tupla.id} value={tupla.nombre}>
-              {tupla.nombre}
+          {lista.map((opcion) => (
+            <option key={opcion.id} value={opcion.nombre}>
+              {opcion.nombre}
             </option>
           ))}
         </select>

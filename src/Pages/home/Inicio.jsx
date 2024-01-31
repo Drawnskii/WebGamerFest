@@ -5,12 +5,12 @@ import Contenedor from "./Contenedor";
 
 function Inicio() {
   return (
-    <div className="flex">
+    <div className="flex h-full">
       <div className="flex-initial w-[395px]">
         <Sidebar />
       </div>
-      <div className="flex-initial w-full">
-        <div className="flex flex-col">
+      <div className="flex-initial w-full h-full">
+        <div className="flex flex-col h-full">
           <Baner />
           <Contenedor />
         </div>
