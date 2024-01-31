@@ -14,7 +14,7 @@ import {
 // Importación de componentes
 import { AuthContext } from "../../context/AuthContext";
 
-function Sidebar() {
+function Sidebar({ onSidebarClick }) {
   // Obtener el dispatch del contexto de autenticación
   const { dispatch } = useContext(AuthContext);
 
@@ -22,6 +22,10 @@ function Sidebar() {
   const handleLogout = () => {
     // Despachar la acción de tipo "LOGOUT"
     dispatch({ type: "LOGOUT" });
+  };
+
+  const handleOptionClick = (option) => {
+    onSidebarClick(option); // Llama a la función proporcionada por el componente principal
   };
 
   return (
@@ -40,20 +44,29 @@ function Sidebar() {
         </div>
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
           <FaHome />
-          <span className="text-[15px] ml-4 text-gray-200 font-bold">
+          <span
+            className="text-[15px] ml-4 text-gray-200 font-bold"
+            onClick={() => handleOptionClick("Inicio")}
+          >
             Inicio
           </span>
         </div>
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
           <FaTrophy />
-          <span className="text-[15px] ml-4 text-gray-200 font-bold">
+          <span
+            className="text-[15px] ml-4 text-gray-200 font-bold"
+            onClick={() => handleOptionClick("Consultar Torneos")}
+          >
             Consultar Torneos
           </span>
         </div>
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
           <FaMoneyBill />
           <div className="flex justify-between w-full items-center">
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+            <span
+              className="text-[15px] ml-4 text-gray-200 font-bold"
+              onClick={() => handleOptionClick("Consultar Patrocinadores")}
+            >
               Consultar Patrocinadores
             </span>
           </div>
@@ -62,7 +75,10 @@ function Sidebar() {
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
           <FaDatabase />
           <div className="flex justify-between w-full items-center">
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+            <span
+              className="text-[15px] ml-4 text-gray-200 font-bold"
+              onClick={() => handleOptionClick("Administrar Datos")}
+            >
               Administrar Datos
             </span>
           </div>
@@ -70,7 +86,10 @@ function Sidebar() {
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
           <IoStatsChart />
           <div className="flex justify-between w-full items-center">
-            <span className="text-[15px] ml-4 text-gray-200 font-bold">
+            <span
+              className="text-[15px] ml-4 text-gray-200 font-bold"
+              onClick={() => handleOptionClick("Estadísticas")}
+            >
               Estadísticas
             </span>
           </div>
