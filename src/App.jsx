@@ -10,7 +10,7 @@ import HomeLayout from "./layouts/home/HomeLayout"; // Layout de la página de i
 import Login from "./Pages/auth/Login"; // Página de inicio de sesión
 import Registro from "./Pages/auth/Registro"; // Página de registro
 import Error404 from "./Pages/404"; // Página de error 404
-import VentanaPrincipal from "./Pages/home/VentanaPrincipal"; // Página principal del home
+import Inicio from "./Pages/home/Inicio"; // Página principal del home
 
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
@@ -64,7 +64,7 @@ function App() {
             path="inicio"
             element={
               <RequireAuth>
-                <VentanaPrincipal /> {/* Página principal del home */}
+                <Inicio /> {/* Página principal del home */}
               </RequireAuth>
             }
           />

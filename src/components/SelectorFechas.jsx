@@ -4,7 +4,7 @@ function SelectorFechas({ label, onChange }) {
       <label className="text-white">{label}</label>
       <div className="relative">
         <input
-          type="datetime-local"
+          type="date"
           className="w-full outline-none rounded-md pl-2 pr-2 py-2"
           onChange={(e) => onChange(e.target.value)}
         />

@@ -3,7 +3,7 @@ import Sidebar from "./Sidebar";
 import Baner from "./Baner";
 import Contenedor from "./Contenedor";
 
-function VentanaPrincipal() {
+function Inicio() {
   return (
     <div className="flex">
       <div className="flex-initial w-[395px]">
@@ -19,4 +19,4 @@ function VentanaPrincipal() {
   );
 }
 
-export default VentanaPrincipal;
+export default Inicio;
