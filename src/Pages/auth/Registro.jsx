@@ -57,6 +57,7 @@ function Registro() {
       await setDoc(doc(db, "usuarios", userId), {
         nombre: nombre,
         apellido: apellido,
+        email: email,
         fechaNacimiento: fechaNacimiento,
         provincia: provincia,
         institucion: institucion,

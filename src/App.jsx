@@ -11,6 +11,7 @@ import Login from "./Pages/auth/Login"; // Página de inicio de sesión
 import Registro from "./Pages/auth/Registro"; // Página de registro
 import Error404 from "./Pages/404"; // Página de error 404
 import Inicio from "./Pages/home/Inicio"; // Página principal del home
+import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
 
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
@@ -29,7 +30,11 @@ function App() {
   };
 
   const RequireNoAuth = ({ children }) => {
-    return currentUser ? <Navigate to="/home/inicio" /> : children;
+    return currentUser ? <Navigate to="/home" /> : children;
+  };
+
+  const RequireEmailVerification = ({ children }) => {
+    return currentUser.emailVerified ? children : <EmailNoVerificado />;
   };
 
   // Renderizado de las rutas de la aplicación
@@ -58,13 +63,15 @@ function App() {
           {/* Página de registro */}
         </Route>
         {/* Rutas para el layout de la página de inicio */}
-        <Route path="/home/" element={<HomeLayout />}>
+        <Route path="/home" element={<HomeLayout />}>
           {/* Ruta protegida que requiere autenticación */}
           <Route
-            path="inicio"
+            index
             element={
               <RequireAuth>
-                <Inicio /> {/* Página principal del home */}
+                <RequireEmailVerification>
+                  <Inicio /> {/* Página principal del home */}
+                </RequireEmailVerification>
               </RequireAuth>
             }
           />

@@ -33,7 +33,7 @@ const Login = () => {
         // Registrado
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user });
-        navigate("/home/inicio");
+        navigate("/home");
         console.log(user);
       })
       .catch((error) => {
