@@ -1,17 +1,58 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { collection, setDoc, doc, updateDoc } from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-function FrmPatrocinadores({ onClose, onSubmit }) {
+function FrmPatrocinadores({ onClose, onSubmit, rowData }) {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [logotipo, setLogotipo] = useState(null);
   const [premios, setPremios] = useState("");
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (rowData) {
+      setNombre(rowData.nombre || "");
+      setDescripcion(rowData.descripcion || "");
+      setPremios(rowData.premios || "");
+    }
+  }, [rowData]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica para enviar los datos del patrocinador al servidor
-    // Luego, puedes llamar a la función onSubmit con los datos del patrocinador
-    onSubmit({ nombre, descripcion, logotipo, premios });
-    // Una vez que se envían los datos, cierra el modal
+
+    try {
+      let logotipoUrl = rowData && rowData.logotipo ? rowData.logotipo : ""; // URL del logotipo existente o vacía si no hay uno
+
+      // Solo subir logotipo si se selecciona uno nuevo y no estamos editando
+      if (logotipo && (!rowData || !rowData.id)) {
+        const logotipoRef = ref(storage, `logotipos_patrocinadores/${nombre}`);
+        await uploadBytesResumable(logotipoRef, logotipo);
+        logotipoUrl = await getDownloadURL(logotipoRef);
+      }
+
+      if (rowData && rowData.id) {
+        // Si hay datos de fila, estamos editando un patrocinador existente
+        const patrocinadorRef = doc(db, "patrocinadores", rowData.id);
+        await updateDoc(patrocinadorRef, {
+          descripcion: descripcion,
+          logotipo: logotipoUrl, // Puede ser una URL vacía si no se subió un nuevo logotipo
+          premios: premios,
+        });
+        alert("¡Patrocinador modificado con éxito!");
+      } else {
+        // Si no hay datos de fila, estamos creando un nuevo patrocinador
+        const nuevoPatrocinadorDocRef = doc(db, "patrocinadores", nombre);
+        await setDoc(nuevoPatrocinadorDocRef, {
+          nombre: nombre,
+          descripcion: descripcion,
+          logotipo: logotipoUrl,
+          premios: premios,
+        });
+        alert("¡Patrocinador agregado con éxito!");
+      }
+    } catch (error) {
+      console.error("Error al guardar el patrocinador:", error);
+    }
     onClose();
   };
 

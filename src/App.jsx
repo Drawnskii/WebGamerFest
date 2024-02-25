@@ -16,8 +16,6 @@ import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
 
-/* Aquí se importa el componente al que se le quiere agregar una ruta */
-
 function App() {
   // Obtener el estado de autenticación del contexto
   const { currentUser } = useContext(AuthContext);

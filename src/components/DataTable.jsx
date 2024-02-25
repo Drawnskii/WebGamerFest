@@ -1,32 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
-import { collection, getDocs, deleteDoc } from "firebase/firestore";
+import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import SelectorColecciones from "./SelectorColecciones";
 import { DataGrid } from "@mui/x-data-grid";
-
-// Importación de componentes de Personalizados
 import FrmJuegos from "../forms/FrmJuegos";
 import FrmCompetencias from "../forms/FrmCompetencias";
 import FrmPatrocinadores from "../forms/FrmPatrocinadores";
 import useModal from "../forms/useModal";
 
 function DataTable() {
-  const { showModal, openModal, closeModal } = useModal(); // Usa la función useModal
+  const { showModal, openModal, closeModal } = useModal();
+  const [selectedRow, setSelectedRow] = useState(null);
 
-  // Función para manejar la acción de editar
-  const handleEditar = () => {
-    openModal(); // Abre el modal del formulario
+  const handleEditar = (row) => {
+    setSelectedRow(row);
+    openModal();
   };
 
-  // Función para determinar qué formulario renderizar según el nombre de la colección
   const renderFormulario = () => {
     switch (nombreColeccion) {
       case "juegos":
-        return <FrmJuegos onClose={closeModal} />;
+        return <FrmJuegos onClose={closeModal} rowData={selectedRow} />;
       case "competencias":
-        return <FrmCompetencias onClose={closeModal} />;
+        return <FrmCompetencias onClose={closeModal} rowData={selectedRow} />;
       case "patrocinadores":
-        return <FrmPatrocinadores onClose={closeModal} />;
+        return <FrmPatrocinadores onClose={closeModal} rowData={selectedRow} />;
       default:
         return null;
     }
@@ -38,21 +36,18 @@ function DataTable() {
 
   useEffect(() => {
     if (nombreColeccion) {
-      const fetchData = async () => {
-        try {
-          const collectionRef = collection(db, nombreColeccion);
-          const querySnapshot = await getDocs(collectionRef);
-          const collectionData = querySnapshot.docs.map((doc) => ({
+      const unsubscribe = onSnapshot(
+        collection(db, nombreColeccion),
+        (snapshot) => {
+          const updatedData = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
           }));
-          setData(collectionData);
-        } catch (error) {
-          console.error("Error al obtener los datos:", error);
+          setData(updatedData);
         }
-      };
+      );
 
-      fetchData();
+      return () => unsubscribe();
     } else {
       setData([]);
     }
@@ -62,33 +57,33 @@ function DataTable() {
     setNombreColeccion(e.target.value);
   };
 
-  const handleEliminarRegistro = async (id) => {
+  // Función para eliminar una tupla
+  const handleEliminar = async (id) => {
     try {
       await deleteDoc(doc(db, nombreColeccion, id));
-      const updatedData = data.filter((item) => item.id !== id);
-      setData(updatedData);
+      setData(data.filter((item) => item.id !== id));
     } catch (error) {
       console.error("Error al eliminar el registro:", error);
     }
   };
 
+  // Función para renderizar los botones de Editar y Eliminar
   const renderAcciones = (params) => {
-    // Deshabilitar o no renderizar los botones
     if (["provincias", "instituciones", "usuarios"].includes(nombreColeccion)) {
-      return null; // No renderizar los botones
+      return null;
     }
 
     return (
       <div className="space-x-4">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handleEditar}
+          onClick={() => handleEditar(params.row)}
         >
           Editar
         </button>
         <button
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          onClick={() => handleEliminarRegistro(params.id)}
+          onClick={() => handleEliminar(params.id)}
         >
           Eliminar
         </button>
@@ -103,7 +98,6 @@ function DataTable() {
       headerName: key,
       width: 150,
     }));
-    // Eliminar la primera columna
     columns.shift();
   }
 
@@ -116,13 +110,24 @@ function DataTable() {
 
   return (
     <div className="h-full max-w-[1200px]">
-      <div className="border rounded-md border-white m-2 p-3">
-        <SelectorColecciones
-          label="Seleccione una colección:"
-          onChange={handleSeleccionColeccion}
-          colecciones={colecciones}
-        />
+      <div className="border rounded-md border-white m-2 p-3 flex items-center justify-between">
+        <div className="flex-grow mr-4">
+          <SelectorColecciones
+            label="Seleccione una colección:"
+            onChange={handleSeleccionColeccion}
+            colecciones={colecciones}
+            className="w-full mr-4"
+            style={{ maxWidth: "100%" }}
+          />
+        </div>
+        <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 mt-3 rounded"
+          onClick={handleEditar}
+        >
+          Agregar
+        </button>
       </div>
+
       <div className="m-2 h-[49vh]">
         <DataGrid
           rows={data}
@@ -131,7 +136,6 @@ function DataTable() {
           rowsPerPageOptions={[5, 10, 20]}
         />
       </div>
-      {/* Renderizado del modal a selección */}
       {showModal && renderFormulario(nombreColeccion)}
     </div>
   );

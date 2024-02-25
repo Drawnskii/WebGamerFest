@@ -1,16 +1,54 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { collection, setDoc, doc, updateDoc } from "firebase/firestore";
+import { db, storage } from "../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-function FrmJuegos({ onClose, onSubmit }) {
+function FrmJuegos({ onClose, onSubmit, rowData }) {
   const [nombre, setNombre] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [imagen, setImagen] = useState(null);
 
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    if (rowData) {
+      setNombre(rowData.nombre || "");
+      setDescripcion(rowData.descripcion || "");
+    }
+  }, [rowData]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Aquí puedes realizar la lógica para enviar los datos del juego al servidor
-    // Luego, puedes llamar a la función onSubmit con los datos del juego
-    onSubmit({ nombre, descripcion, imagen });
-    // Una vez que se envían los datos, cierra el modal
+
+    try {
+      let imageUrl = rowData && rowData.imagen ? rowData.imagen : ""; // Conserva la imagen existente si estás editando
+
+      // Sube la nueva imagen si se selecciona una y no estamos editando
+      if (imagen && (!rowData || !rowData.id)) {
+        const imageRef = ref(storage, `imagenes_juegos/${nombre}`);
+        await uploadBytesResumable(imageRef, imagen);
+        imageUrl = await getDownloadURL(imageRef);
+      }
+
+      if (rowData && rowData.id) {
+        // Si hay datos de fila, estamos editando un juego existente
+        const juegoRef = doc(db, "juegos", rowData.id);
+        await updateDoc(juegoRef, {
+          descripcion: descripcion,
+          imagen: imageUrl, // Actualiza la referencia de la imagen
+        });
+        alert("¡Juego modificado con éxito!");
+      } else {
+        // Si no hay datos de fila, estamos creando un nuevo juego
+        const nuevoJuegoDocRef = doc(db, "juegos", nombre);
+        await setDoc(nuevoJuegoDocRef, {
+          nombre: nombre,
+          descripcion: descripcion,
+          imagen: imageUrl,
+        });
+        alert("¡Juego agregado con éxito!");
+      }
+    } catch (error) {
+      console.error("Error al guardar el juego:", error);
+    }
     onClose();
   };
 
