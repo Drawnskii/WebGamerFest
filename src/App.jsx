@@ -15,6 +15,7 @@ import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
 
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
+import { RoleContextProvider } from "./context/RoleContext"; // Contexto de rol
 
 function App() {
   // Obtener el estado de autenticación del contexto
@@ -68,7 +69,9 @@ function App() {
             element={
               <RequireAuth>
                 <RequireEmailVerification>
-                  <Inicio /> {/* Página principal del home */}
+                  <RoleContextProvider>
+                    <Inicio /> {/* Página principal del home */}
+                  </RoleContextProvider>
                 </RequireEmailVerification>
               </RequireAuth>
             }

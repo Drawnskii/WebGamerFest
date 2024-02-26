@@ -13,8 +13,12 @@ import {
 
 // Importación de componentes
 import { AuthContext } from "../../context/AuthContext";
+import { RoleContext } from "../../context/RoleContext";
 
 function Sidebar({ onSidebarClick }) {
+  // Importación del contexto del rol del usuario
+  const { isAdmin } = useContext(RoleContext);
+
   // Obtener el dispatch del contexto de autenticación
   const { dispatch } = useContext(AuthContext);
 
@@ -71,29 +75,35 @@ function Sidebar({ onSidebarClick }) {
             </span>
           </div>
         </div>
-        <div className="my-4 bg-gray-400 h-[1px]"></div>
-        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
-          <FaDatabase />
-          <div className="flex justify-between w-full items-center">
-            <span
-              className="text-[15px] ml-4 text-gray-200 font-bold"
-              onClick={() => handleOptionClick("Administrar Datos")}
-            >
-              Administrar Datos
-            </span>
-          </div>
-        </div>
-        <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
-          <IoStatsChart />
-          <div className="flex justify-between w-full items-center">
-            <span
-              className="text-[15px] ml-4 text-gray-200 font-bold"
-              onClick={() => handleOptionClick("Estadísticas")}
-            >
-              Estadísticas
-            </span>
-          </div>
-        </div>
+
+        {isAdmin && (
+          <>
+            <div className="my-4 bg-gray-400 h-[1px]"></div>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
+              <FaDatabase />
+              <div className="flex justify-between w-full items-center">
+                <span
+                  className="text-[15px] ml-4 text-gray-200 font-bold"
+                  onClick={() => handleOptionClick("Administrar Datos")}
+                >
+                  CRUD
+                </span>
+              </div>
+            </div>
+            <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">
+              <IoStatsChart />
+              <div className="flex justify-between w-full items-center">
+                <span
+                  className="text-[15px] ml-4 text-gray-200 font-bold"
+                  onClick={() => handleOptionClick("Estadísticas")}
+                >
+                  Estadísticas
+                </span>
+              </div>
+            </div>
+          </>
+        )}
+
         <div className="my-4 bg-gray-400 h-[1px]"></div>
         {/* Botón de salida */}
         <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-purple-600 text-white">

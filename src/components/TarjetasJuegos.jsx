@@ -2,13 +2,35 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
+import Pagos from "../Pages/payments/Pagos";
+
+// Importación de componentes de react
+import useModal from "../forms/useModal";
+
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  "pk_test_51OnjMYCuEmlmnDrJsYk27Y6HsGXQOQ40WYR09JvRDcZXIpMXHt9WA6SU4tNb7Sf5R0fNfwnrY2VsI1RKnYh3GmSb00jbuSzcH6"
+);
+
 function TarjetasJuegos() {
+  const { showModal, openModal, closeModal } = useModal();
+
   // Función que maneja el pago de los productos
   const handlePay = (producto) => {
     console.log(producto);
+    setProducto(producto);
+    openModal();
+  };
+
+  // Función para renderizar el formulario de pago
+  const renderFormulario = () => {
+    return <Pagos onClose={closeModal} competencia={producto} />;
   };
 
   const [competencias, setCompetencias] = useState([]);
+  const [producto, setProducto] = useState(null);
 
   useEffect(() => {
     const fetchCompetencias = async () => {
@@ -74,6 +96,9 @@ function TarjetasJuegos() {
           </div>
         </div>
       ))}
+      <Elements stripe={stripePromise}>
+        {showModal && renderFormulario()}
+      </Elements>
     </div>
   );
 }
