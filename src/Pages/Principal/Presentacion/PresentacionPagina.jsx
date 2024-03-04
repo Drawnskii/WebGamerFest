@@ -5,6 +5,10 @@ import "./PresentacionPagina.css"; // Asegúrate de importar tus estilos
 import PortadaFornite from "../imagenes/FornitePortada.png";
 import PortadaValorant from "../imagenes/PortadaValorant.png";
 import PortadaDragon from "../imagenes/PortadaDragon.png";
+import PortadaMinecraft from "../imagenes/PortadaMinecraft.png";
+import PortadaMortal from "../imagenes/PortadaMortal.png";
+import PortadaSmash from "../imagenes/PortadaSmash.png";
+import PortadaRoblox from "../imagenes/PortadaRoblox.png";
 
 const ONE_SECOND = 1000;
 const AUTO_DELAY = ONE_SECOND * 4;
@@ -17,10 +21,10 @@ const SPRING_OPTIONS = {
   damping: 50,
 };
 
-const portadas = [PortadaFornite, PortadaValorant, PortadaDragon];
+const portadas = [PortadaFornite, PortadaValorant, PortadaDragon, PortadaMinecraft, PortadaMortal, PortadaSmash, PortadaRoblox];
 
 const SwipeCarousel = () => {
-  const [imgIndex, setImgIndex] = useState(-1);
+  const [imgIndex, setImgIndex] = useState(-2);
   const dragX = useMotionValue(0);
 
   useEffect(() => {
