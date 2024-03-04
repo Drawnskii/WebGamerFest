@@ -64,7 +64,13 @@ const Login = () => {
               placeholder={"Ingrese su contraseña"}
               onChange={(e) => setPassword(e.target.value)}
             />
-            
+            <Link
+              to="/nueva_contrasenia"
+              className="text-white hover:underline transition-all"
+            >
+              ¿Olvidaste tu contrasenia?
+            </Link>
+
             <div>
               <button
                 type="submit"
@@ -73,7 +79,7 @@ const Login = () => {
                 Ingresar
               </button>
             </div>
-            
+
             <div className="mt-4 text-center text-white">
               ¿No tienes una cuenta?{" "}
               <Link

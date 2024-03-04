@@ -63,7 +63,7 @@ function Estadisticas() {
 
   return (
     <div className="flex items-center justify-center w-full h-full">
-      <div className="max-w-md p-4 bg-light-green shadow-md rounded-md text-center">
+      <div className="max-w-md p-4 bg-light-green shadow-md rounded-md text-center mt-1 ml-2">
         <h2 className="text-lg font-semibold mb-2 text-left">
           Información de la Web
         </h2>
@@ -82,7 +82,7 @@ function Estadisticas() {
         </p>
         <FaMoneyBillWave className="text-4xl mx-auto mt-4" />
       </div>
-      <div className="ml-4 m-2 p-4 h-[97%] bg-light-green shadow-md rounded-md">
+      <div className="ml-4 m-2 p-4 h-[62vh] bg-light-green shadow-md rounded-md">
         <InscritosChart />
       </div>
     </div>

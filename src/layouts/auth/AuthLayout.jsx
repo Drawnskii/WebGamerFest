@@ -5,7 +5,7 @@ import "../css/layout.css";
 
 function AuthLayout() {
   return (
-    <div className="gradiente flex items-center justify-center w-full">
+    <div className="gradiente h-screen flex items-center justify-center w-full">
       <Outlet />
     </div>
   );

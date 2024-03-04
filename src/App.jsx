@@ -16,6 +16,7 @@ import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
 import { RoleContextProvider } from "./context/RoleContext"; // Contexto de rol
+import RecuperarContrasenia from "./Pages/auth/RecuperarContrasenia";
 
 function App() {
   // Obtener el estado de autenticación del contexto
@@ -56,6 +57,14 @@ function App() {
             element={
               <RequireNoAuth>
                 <Registro />
+              </RequireNoAuth>
+            }
+          />{" "}
+          <Route
+            path="nueva_contrasenia"
+            element={
+              <RequireNoAuth>
+                <RecuperarContrasenia />
               </RequireNoAuth>
             }
           />{" "}
