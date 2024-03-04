@@ -16,6 +16,7 @@ import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
 import { RoleContextProvider } from "./context/RoleContext"; // Contexto de rol
+import Footer from "./components/Footer/Footer";
 import RecuperarContrasenia from "./Pages/auth/RecuperarContrasenia";
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 
   // Renderizado de las rutas de la aplicación
   return (
+  <>
     <BrowserRouter>
       <Routes>
         {/* Rutas para el layout de autenticación */}
@@ -90,6 +92,9 @@ function App() {
         <Route path="*" element={<Error404 />} />
       </Routes>
     </BrowserRouter>
+    <Footer/>
+  </>
+    
   );
 }
 
