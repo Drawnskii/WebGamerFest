@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "./brand1.png";
+import logo from "./logogamer.png";
 import payment from "./payment.png";
 import { FaFacebookF, FaTiktok } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
@@ -18,11 +18,11 @@ function Footer() {
       }, []);
   return (
     <div className="footer-container text-white bg-dark-purple h-[380px] relative overflow-hidden">
-      <div className="mx-8 md:mx-32 flex justify-between items-center pt-8">
+      <div className="mx-8 md:mx-22 flex justify-between items-center pt-8">
         {/* Sección del Logo y "Call Us" */}
         <div className="text-center flex items-center">
           <div>
-            <img src={logo} className="w-[150px] h-[93px]" alt="Logo" />
+            <img src={logo} className="w-[170px] h-[150px]" alt="Logo" />
           </div>
           <div className="ml-4 md:ml-8">
             <h3 className="text-[18px] font-[500]">
@@ -33,7 +33,7 @@ function Footer() {
         </div>
 
         {/* Sección "Follow Us" */}
-        <div className="text-center md:ml-12">
+        <div className="text-center md:ml-2">
           <h3 className="text-[18px] font-[500]">Síganos</h3>
           <div className="flex gap-4 md:gap-6 mt-2">
             <a href="https://www.facebook.com/gamerfest.ec/" target="_blank" rel="noopener noreferrer" className="bottom-social-icon">
