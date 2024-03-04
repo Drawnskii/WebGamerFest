@@ -5,7 +5,7 @@ import "../css/layout.css";
 
 function HomeLayout() {
   return (
-    <div className="gradiente h-[100vh] w-full">
+    <div className="gradiente h-full w-full">
       <Outlet />
     </div>
   );

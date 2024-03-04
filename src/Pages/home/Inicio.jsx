@@ -17,7 +17,7 @@ function Inicio() {
         <Sidebar onSidebarClick={handleOptionSelect} />
       </div>
       <div className="flex-initial w-full h-full">
-        <div className="flex flex-col h-full max-w-[1175px]">
+        <div className="flex flex-col max-w-[1225px]">
           <Baner />
           <Contenedor opcion={opcionSeleccionada} />
         </div>

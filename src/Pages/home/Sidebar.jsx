@@ -34,7 +34,7 @@ function Sidebar({ onSidebarClick }) {
 
   return (
     <div>
-      <div className="fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] text-center glass sombra m-2 rounded-lg">
+      <div className="fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] text-center glass sombra m-2 rounded-lg ">
         <div className="text-gray-100 text-xl">
           <div className="p-2.5 mt-1 flex items-center">
             <div className=" rounded-md bg-light-green p-1">

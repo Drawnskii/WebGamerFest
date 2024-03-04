@@ -53,12 +53,18 @@ const Login = () => {
           </div>
           <form onSubmit={handleLogin}>
             {/* Al haber un cambio se actutalizan los valores del componente Email y Contrasenia */}
+            {error && (
+              <div className="mt-4 text-center text-red-500 bg-red-100 p-2 rounded-md">
+                Usuario o contraseña incorrectos
+              </div>
+            )}
             <Email onChange={(e) => setEmail(e.target.value)} />
             <Contrasenia
               label={"Contraseña:"}
               placeholder={"Ingrese su contraseña"}
               onChange={(e) => setPassword(e.target.value)}
             />
+            
             <div>
               <button
                 type="submit"
@@ -67,6 +73,7 @@ const Login = () => {
                 Ingresar
               </button>
             </div>
+            
             <div className="mt-4 text-center text-white">
               ¿No tienes una cuenta?{" "}
               <Link
