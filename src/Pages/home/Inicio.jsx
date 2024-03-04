@@ -4,6 +4,8 @@ import Sidebar from "./Sidebar";
 import Baner from "./Baner";
 import Contenedor from "./Contenedor";
 
+import Footer from "../../components/Footer/Footer";
+
 function Inicio() {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState("Inicio");
 
@@ -17,9 +19,10 @@ function Inicio() {
         <Sidebar onSidebarClick={handleOptionSelect} />
       </div>
       <div className="flex-initial w-full h-full">
-        <div className="flex flex-col max-w-[1225px]">
+        <div className="flex flex-col max-w-[1150px]">
           <Baner />
           <Contenedor opcion={opcionSeleccionada} />
+          <Footer />
         </div>
       </div>
     </div>

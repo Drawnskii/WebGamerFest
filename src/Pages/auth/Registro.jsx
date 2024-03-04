@@ -142,7 +142,7 @@ function Registro() {
           <div>
             ¿Ya tienes una cuenta?{" "}
             <Link
-              to="/"
+              to="/login"
               className="text-light-green font-semibold hover:underline transition-all"
             >
               Inicia Sesión

@@ -11,9 +11,10 @@
   cursor: grab;
   align-items: center;
   justify-content: center;
-  width: 65%; /* Ajusté el ancho del contenedor al 80% */
+  width: 71%; /* Ajusté el ancho del contenedor al 65% */
   margin: 0 auto;
   margin-top: 90px;
+  gap: 75px;
 }
 
 .carousel-item {

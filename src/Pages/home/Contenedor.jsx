@@ -10,7 +10,7 @@ import Informacion from "../../components/Informacion/Informacion";
 function Contenedor({ opcion }) {
   return (
     <div className="rounded-lg m-2 glass sombra p-2 min-h-[503px] ">
-      <div className="bg-light-purple p-1 rounded-md min-h-[486px]">
+      <div className="bg-light-purple p-1 pb-4 rounded-md min-h-[486px]">
         {/* Renderizar el componente DataTable con la opción seleccionada */}
         {opcion === "Administrar Datos" && <DataTable />}
         {opcion === "Consultar Torneos" && <TarjetasJuegos />}

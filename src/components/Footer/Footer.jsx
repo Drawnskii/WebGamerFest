@@ -5,19 +5,18 @@ import payment from "./payment.png";
 import { FaFacebookF, FaTiktok } from "react-icons/fa";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 
-
 /* Aos*/
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 function Footer() {
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-      }, []);
+  useEffect(() => {
+    AOS.init();
+    AOS.refresh();
+  }, []);
   return (
-    <div className="footer-container text-white bg-dark-purple h-[380px] relative overflow-hidden">
+    <div className="footer-container m-2 w-screen text-white bg-dark-purple h-[380px] relative overflow-hidden">
       <div className="mx-8 md:mx-22 flex justify-between items-center pt-8">
         {/* Sección del Logo y "Call Us" */}
         <div className="text-center flex items-center">
@@ -36,16 +35,36 @@ function Footer() {
         <div className="text-center md:ml-2">
           <h3 className="text-[18px] font-[500]">Síganos</h3>
           <div className="flex gap-4 md:gap-6 mt-2">
-            <a href="https://www.facebook.com/gamerfest.ec/" target="_blank" rel="noopener noreferrer" className="bottom-social-icon">
+            <a
+              href="https://www.facebook.com/gamerfest.ec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bottom-social-icon"
+            >
               <FaFacebookF />
             </a>
-            <a href="https://www.instagram.com/gamerfest.ec/" target="_blank" rel="noopener noreferrer" className="bottom-social-icon">
+            <a
+              href="https://www.instagram.com/gamerfest.ec/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bottom-social-icon"
+            >
               <BsInstagram />
-            </a>  
-            <a href="https://twitter.com/?lang=es" target="_blank" rel="noopener noreferrer" className="bottom-social-icon">
+            </a>
+            <a
+              href="https://twitter.com/?lang=es"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bottom-social-icon"
+            >
               <BsTwitter />
             </a>
-            <a href="https://www.tiktok.com/es/" target="_blank" rel="noopener noreferrer" className="bottom-social-icon">
+            <a
+              href="https://www.tiktok.com/es/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bottom-social-icon"
+            >
               <FaTiktok />
             </a>
           </div>
@@ -66,7 +85,7 @@ function Footer() {
             <p>support@gmail.com</p>
           </div>
         </div>
-        
+
         <div data-aos="fade-left" data-aos-duration="2000">
           <div className="footer-info w-[250px] h-[250px] z-[4]">
             <h2 className="text-[22px] font-[600] mb-4">Categorias</h2>

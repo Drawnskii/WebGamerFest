@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./Narvbar/Narvbar";
 import PresentacionPagina from "./Presentacion/PresentacionPagina"; // Importa el nuevo componente
 
+import Footer from "../../components/Footer/Footer";
 
 const PaginaPrincipal = () => {
   const [contenido, setContenido] = React.useState(1);
@@ -18,9 +19,10 @@ const PaginaPrincipal = () => {
   };
 
   return (
-    <div>
+    <div className="h-screen">
       <Navbar setContenido={setContenido} />
       {cambiarContenido()}
+      <Footer />
     </div>
   );
 };

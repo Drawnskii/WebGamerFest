@@ -17,7 +17,6 @@ import Login from "./Pages/auth/Login"; // Página de inicio de sesión
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
 import { RoleContextProvider } from "./context/RoleContext"; // Contexto de rol
-import Footer from "./components/Footer/Footer";
 import RecuperarContrasenia from "./Pages/auth/RecuperarContrasenia";
 
 function App() {
@@ -41,67 +40,79 @@ function App() {
 
   // Renderizado de las rutas de la aplicación
   return (
-  <>
-    <BrowserRouter>
-      <Routes>
-        {/* Rutas para el layout de autenticación */}
-        <Route path="/" element={<AuthLayout />}>
-          {/* Página principal */}
-          <Route index element={<PaginaPrincipal />} />
-          {/* Ruta para el login */}
-          <Route path="login" element={<RequireNoAuth><Login /></RequireNoAuth>} />
-          {/* Ruta para el registro */}
-          <Route path="registro" element={<RequireNoAuth><Registro /></RequireNoAuth>} />
-          <Route
-            index
-            element={
-              <RequireNoAuth>
-                <Login />
-              </RequireNoAuth>
-            }
-          />{" "}
-          {/* Página de inicio de sesión */}
-          <Route
-            path="registro"
-            element={
-              <RequireNoAuth>
-                <Registro />
-              </RequireNoAuth>
-            }
-          />{" "}
-          <Route
-            path="nueva_contrasenia"
-            element={
-              <RequireNoAuth>
-                <RecuperarContrasenia />
-              </RequireNoAuth>
-            }
-          />{" "}
-          {/* Página de registro */}
-        </Route>
-        {/* Rutas para el layout de la página de inicio */}
-        <Route path="/home" element={<HomeLayout />}>
-          {/* Ruta protegida que requiere autenticación */}
-          <Route
-            index
-            element={
-              <RequireAuth>
-                <RequireEmailVerification>
-                  <RoleContextProvider>
-                    <Inicio />
-                  </RoleContextProvider>
-                </RequireEmailVerification>
-              </RequireAuth>
-            }
-          />
-        </Route>
-        {/* Ruta para manejar errores 404 */}
-        <Route path="*" element={<Error404 />} />
-      </Routes>
-    </BrowserRouter>
-    <Footer/>
-  </>
-    
+    <>
+      <BrowserRouter>
+        <Routes>
+          {/* Rutas para el layout de autenticación */}
+          <Route path="/" element={<AuthLayout />}>
+            {/* Página principal */}
+            <Route index element={<PaginaPrincipal />} />
+            {/* Ruta para el login */}
+            <Route
+              path="login"
+              element={
+                <RequireNoAuth>
+                  <Login />
+                </RequireNoAuth>
+              }
+            />
+            {/* Ruta para el registro */}
+            <Route
+              path="registro"
+              element={
+                <RequireNoAuth>
+                  <Registro />
+                </RequireNoAuth>
+              }
+            />
+            <Route
+              index
+              element={
+                <RequireNoAuth>
+                  <Login />
+                </RequireNoAuth>
+              }
+            />{" "}
+            {/* Página de inicio de sesión */}
+            <Route
+              path="registro"
+              element={
+                <RequireNoAuth>
+                  <Registro />
+                </RequireNoAuth>
+              }
+            />{" "}
+            <Route
+              path="nueva_contrasenia"
+              element={
+                <RequireNoAuth>
+                  <RecuperarContrasenia />
+                </RequireNoAuth>
+              }
+            />{" "}
+            {/* Página de registro */}
+          </Route>
+          {/* Rutas para el layout de la página de inicio */}
+          <Route path="/home" element={<HomeLayout />}>
+            {/* Ruta protegida que requiere autenticación */}
+            <Route
+              index
+              element={
+                <RequireAuth>
+                  <RequireEmailVerification>
+                    <RoleContextProvider>
+                      <Inicio />
+                    </RoleContextProvider>
+                  </RequireEmailVerification>
+                </RequireAuth>
+              }
+            />
+          </Route>
+          {/* Ruta para manejar errores 404 */}
+          <Route path="*" element={<Error404 />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
