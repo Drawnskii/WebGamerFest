@@ -3,6 +3,7 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 import Pagos from "../Pages/payments/Pagos";
+import Participantes from "./Participantes";
 
 // Importación de componentes de react
 import useModal from "../forms/useModal";
@@ -15,22 +16,41 @@ const stripePromise = loadStripe(
 );
 
 function TarjetasJuegos() {
-  const { showModal, openModal, closeModal } = useModal();
+  const {
+    showModal: showFormulario,
+    openModal: openFormulario,
+    closeModal: closeFormulario,
+  } = useModal();
+  const {
+    showModal: showParticipantes,
+    openModal: openParticipantes,
+    closeModal: closeParticipantes,
+  } = useModal();
 
-  // Función que maneja el pago de los productos
-  const handlePay = (producto) => {
-    console.log(producto);
-    setProducto(producto);
-    openModal();
+  const handleParticipantes = (competencia) => {
+    console.log(competencia);
+    setCompetencia(competencia);
+    openParticipantes();
   };
 
-  // Función para renderizar el formulario de pago
+  const handlePay = (competencia) => {
+    console.log(competencia);
+    setCompetencia(competencia);
+    openFormulario();
+  };
+
+  const renderParticipantes = () => {
+    return (
+      <Participantes onClose={closeParticipantes} competencia={competencia} />
+    );
+  };
+
   const renderFormulario = () => {
-    return <Pagos onClose={closeModal} competencia={producto} />;
+    return <Pagos onClose={closeFormulario} competencia={competencia} />;
   };
 
   const [competencias, setCompetencias] = useState([]);
-  const [producto, setProducto] = useState(null);
+  const [competencia, setCompetencia] = useState(null);
 
   useEffect(() => {
     const fetchCompetencias = async () => {
@@ -77,7 +97,7 @@ function TarjetasJuegos() {
             Hora de finalización: {competencia.horaFinal}
           </p>
           <p className="text-sm text-gray-600 mb-2">
-            Aulas: {competencia.aulas}
+            Aula: {competencia.aulas}
           </p>
           <p className="text-sm text-gray-600 mb-2">
             Cupo máximo: {competencia.cupoMaximo}
@@ -94,11 +114,21 @@ function TarjetasJuegos() {
               Inscribirse
             </button>
           </div>
+          <div className="flex justify-center text-black font-semibold hover:underline hover:cursor-pointer transition-all mt-4">
+            {" "}
+            <span
+              onClick={() => handleParticipantes(competencia)}
+              className="text-sm"
+            >
+              Mostrar Participantes
+            </span>
+          </div>
         </div>
       ))}
       <Elements stripe={stripePromise}>
-        {showModal && renderFormulario()}
+        {showFormulario && renderFormulario()}
       </Elements>
+      {showParticipantes && renderParticipantes()}
     </div>
   );
 }

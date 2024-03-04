@@ -4,6 +4,7 @@ import "../css/background.css";
 import DataTable from "../../components/DataTable";
 import TarjetasJuegos from "../../components/TarjetasJuegos";
 import GridPatrocinadores from "../../components/GridPatrocinadores";
+import Estadistica from "../../components/Estadisticas";
 import Informacion from "../../components/Informacion/Informacion";
 
 function Contenedor({ opcion }) {
@@ -14,6 +15,7 @@ function Contenedor({ opcion }) {
         {opcion === "Administrar Datos" && <DataTable />}
         {opcion === "Consultar Torneos" && <TarjetasJuegos />}
         {opcion === "Consultar Patrocinadores" && <GridPatrocinadores />}
+        {opcion === "Estadísticas" && <Estadistica />}
         {opcion === "Inicio" && <Informacion />}
         {/* Agregar más opciones */}
       </div>
