@@ -41,7 +41,7 @@ function Inicio() {
     <div className="text-white ">
       <div className="flex justify-center mb-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4 mt-2 mx-2">
-          {competencias.slice(0, 3).map((competencia) => (
+          {competencias.slice(0, 4).map((competencia) => (
             <div
               key={competencia.id}
               className="relative rounded-lg shadow-md  transition duration-300 ease-in-out transform hover:scale-105"
