@@ -1,0 +1,146 @@
+.navbar-contenedor {
+  width: 100%;
+  height: 75px;
+  background: linear-gradient(
+    45deg,
+    #0c0c0c,
+    #831187,
+    #2e1d4b,
+    #3e0c76,
+    #9572ff,
+    #6642b1
+  );
+  background-size: 300% 300%;
+  padding: 0 2%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.navbar-sub-contenedor {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+}
+
+.menu {
+  width: 100px;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  border-radius: 20.5px;
+  background: linear-gradient(45deg, #5CE8B1, #2E1D4B);
+  padding: 20px;
+}
+
+.menu p {
+  font-size: 20px;
+  color: white;
+  margin-left: 13px;
+}
+
+.menu-icon {
+  width: 31px;
+  height: 31px;
+  color: #aaaaaa;
+}
+
+.navbar ul {
+  display: flex;
+  gap: 54px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+}
+
+.nav-animado a {
+  top: 5px;
+  left: 50px;
+  padding: 0 0.5em;
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  overflow: hidden;
+}
+
+.nav-animado a:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 30px;
+  background-color: #27ae60;
+  visibility: hidden;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.nav-animado a:hover:before {
+  visibility: visible;
+  transform: scaleX(2);
+}
+
+.nav-animado a:hover {
+  color: #5CE8B1;
+}
+
+.navbar-logo {
+  position: absolute;
+  top: -20%;
+  left: 90px;
+  width: 110px;
+  height: auto;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.1);
+}
+
+.botones-derecha {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  display: flex;  /* Alinea los botones horizontalmente */
+  gap: 10px;  /* Agrega espacio entre los botones */
+  align-items: center; /* Ajusta la alineación vertical de los botones al centro */
+}
+
+.btn-iniciar-sesion,
+.btn-registrarse {
+  height: 35px;
+  padding: 0 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.btn-iniciar-sesion {
+  background-color: #5CE8B1;
+  color: #2E1D4B;
+}
+
+.btn-iniciar-sesion:hover {
+  transform: scale(1.1);
+}
+
+.btn-registrarse {
+  background-color: #2E1D4B;
+  color: #5CE8B1;
+}
+
+.btn-registrarse:hover {
+  transform: scale(1.1);
+}

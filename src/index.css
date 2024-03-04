@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mukta&display=swap");
 
+/* Añade tus otros estilos a continuación */
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

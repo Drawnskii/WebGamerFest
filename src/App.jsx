@@ -7,11 +7,12 @@ import AuthLayout from "./layouts/auth/AuthLayout"; // Layout de autenticación
 import HomeLayout from "./layouts/home/HomeLayout"; // Layout de la página de inicio
 
 /* Pages */
-import Login from "./Pages/auth/Login"; // Página de inicio de sesión
 import Registro from "./Pages/auth/Registro"; // Página de registro
 import Error404 from "./Pages/404"; // Página de error 404
 import Inicio from "./Pages/home/Inicio"; // Página principal del home
 import EmailNoVerificado from "./Pages/auth/EmailNoVerificado";
+import PaginaPrincipal from "./Pages/Principal/PaginaPrincipal";
+import Login from "./Pages/auth/Login"; // Página de inicio de sesión
 
 /* Componentes */
 import { AuthContext } from "./context/AuthContext"; // Contexto de autenticación
@@ -45,6 +46,12 @@ function App() {
       <Routes>
         {/* Rutas para el layout de autenticación */}
         <Route path="/" element={<AuthLayout />}>
+          {/* Página principal */}
+          <Route index element={<PaginaPrincipal />} />
+          {/* Ruta para el login */}
+          <Route path="login" element={<RequireNoAuth><Login /></RequireNoAuth>} />
+          {/* Ruta para el registro */}
+          <Route path="registro" element={<RequireNoAuth><Registro /></RequireNoAuth>} />
           <Route
             index
             element={
@@ -81,7 +88,7 @@ function App() {
               <RequireAuth>
                 <RequireEmailVerification>
                   <RoleContextProvider>
-                    <Inicio /> {/* Página principal del home */}
+                    <Inicio />
                   </RoleContextProvider>
                 </RequireEmailVerification>
               </RequireAuth>
