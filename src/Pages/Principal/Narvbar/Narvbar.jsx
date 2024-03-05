@@ -10,19 +10,23 @@ const Navbar = ({ handdleContenido }) => {
         <div className="navbar">
           {/* Elimina el Link alrededor de la imagen */}
           <div className="navbar-logo">
-            <img src={logogamer} alt="Logo" />
+            <img
+              src={logogamer}
+              alt="Logo"
+              onClick={() => handdleContenido(0)}
+            />
           </div>
           <ul className="nav-animado">
-              <Link to="/login " className="nav-animado">
-                HOME
-              </Link>
+            <Link to="/login " className="nav-animado">
+              Home
+            </Link>
 
-              <Link to="/login " className="nav-animado">
-                SOBRE NOSOTROS
-              </Link>
-              <Link to="/login " className="nav-animado">
-                CONTACTANOS
-                </Link>
+            <a href="#!" onClick={() => handdleContenido(1)}>
+              Sobre Nosotros
+            </a>
+            <a href="#!" onClick={() => handdleContenido(2)}>
+              Contáctanos
+            </a>
           </ul>
           <div className="botones-derecha">
             {/* Utiliza Link para el botón de Iniciar Sesión */}

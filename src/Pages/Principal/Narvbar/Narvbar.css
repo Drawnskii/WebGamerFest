@@ -24,17 +24,17 @@
 .navbar-sub-contenedor {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 55px;
 }
 
 .menu {
   width: 100px;
-  height: 30px;
+  height: 41px;
   display: flex;
   align-items: center;
   border-radius: 20.5px;
-  background: linear-gradient(45deg, #5CE8B1, #2E1D4B);
-  padding: 40px;
+  background: linear-gradient(45deg, #5ce8b1, #2e1d4b);
+  padding: 20px;
 }
 
 .menu p {
@@ -51,15 +51,15 @@
 
 .navbar ul {
   display: flex;
-  gap: 20px;
+  gap: 54px;
   font-size: 18px;
   font-weight: 600;
   color: white;
 }
 
-.nav-animado {
+.nav-animado a {
   top: 5px;
-  left: 20px;
+  left: 50px;
   padding: 0 0.5em;
   position: relative;
   text-decoration: none;
@@ -68,7 +68,7 @@
   overflow: hidden;
 }
 
-.nav-animado :before {
+.nav-animado a:before {
   position: absolute;
   content: "";
   width: 100%;
@@ -81,13 +81,13 @@
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-animado :hover:before {
+.nav-animado a:hover:before {
   visibility: visible;
   transform: scaleX(2);
 }
 
-.nav-animado :hover {
-  color: #5CE8B1;
+.nav-animado a:hover {
+  color: #5ce8b1;
 }
 
 .navbar-logo {
@@ -97,6 +97,7 @@
   width: 110px;
   height: auto;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .navbar-logo:hover {
@@ -108,8 +109,8 @@
   top: 50%;
   right: 30px;
   transform: translateY(-50%);
-  display: flex;  /* Alinea los botones horizontalmente */
-  gap: 10px;  /* Agrega espacio entre los botones */
+  display: flex; /* Alinea los botones horizontalmente */
+  gap: 10px; /* Agrega espacio entre los botones */
   align-items: center; /* Ajusta la alineación vertical de los botones al centro */
 }
 
@@ -127,8 +128,8 @@
 }
 
 .btn-iniciar-sesion {
-  background-color: #5CE8B1;
-  color: #2E1D4B;
+  background-color: #5ce8b1;
+  color: #2e1d4b;
 }
 
 .btn-iniciar-sesion:hover {
@@ -136,8 +137,8 @@
 }
 
 .btn-registrarse {
-  background-color: #2E1D4B;
-  color: #5CE8B1;
+  background-color: #2e1d4b;
+  color: #5ce8b1;
 }
 
 .btn-registrarse:hover {

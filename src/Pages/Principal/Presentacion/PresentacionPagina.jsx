@@ -21,7 +21,15 @@ const SPRING_OPTIONS = {
   damping: 50,
 };
 
-const portadas = [PortadaFornite, PortadaValorant, PortadaDragon, PortadaMinecraft, PortadaMortal, PortadaSmash, PortadaRoblox];
+const portadas = [
+  PortadaFornite,
+  PortadaValorant,
+  PortadaDragon,
+  PortadaMinecraft,
+  PortadaMortal,
+  PortadaSmash,
+  PortadaRoblox,
+];
 
 const SwipeCarousel = () => {
   const [imgIndex, setImgIndex] = useState(-3);
@@ -31,7 +39,7 @@ const SwipeCarousel = () => {
     const intervalRef = setInterval(() => {
       const x = dragX.get();
       if (x === 0) {
-        setImgIndex((pv) => (pv === portadas.length - 3 ? -3 : pv + 1));
+        setImgIndex((pv) => (pv === portadas.length - 4 ? -3 : pv + 1));
       }
     }, AUTO_DELAY);
 
@@ -80,8 +88,8 @@ const SwipeCarousel = () => {
         {portadas.map((_, idx) => (
           <button
             key={idx}
-            onClick={() => setImgIndex(idx - 1)}
-            className={`dot ${idx - 1 === imgIndex ? "active" : ""}`}
+            onClick={() => setImgIndex(idx - 3)}
+            className={`dot ${idx - 3 === imgIndex ? "active" : ""}`}
           />
         ))}
       </div>
