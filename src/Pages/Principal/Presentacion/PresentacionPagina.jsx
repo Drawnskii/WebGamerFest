@@ -24,14 +24,14 @@ const SPRING_OPTIONS = {
 const portadas = [PortadaFornite, PortadaValorant, PortadaDragon, PortadaMinecraft, PortadaMortal, PortadaSmash, PortadaRoblox];
 
 const SwipeCarousel = () => {
-  const [imgIndex, setImgIndex] = useState(-2);
+  const [imgIndex, setImgIndex] = useState(-3);
   const dragX = useMotionValue(0);
 
   useEffect(() => {
     const intervalRef = setInterval(() => {
       const x = dragX.get();
       if (x === 0) {
-        setImgIndex((pv) => (pv === portadas.length - 2 ? -1 : pv + 1));
+        setImgIndex((pv) => (pv === portadas.length - 3 ? -3 : pv + 1));
       }
     }, AUTO_DELAY);
 
@@ -40,7 +40,7 @@ const SwipeCarousel = () => {
 
   const onDragEnd = () => {
     const x = dragX.get();
-    if (x <= -DRAG_BUFFER && imgIndex < portadas.length - 1) {
+    if (x <= -DRAG_BUFFER && imgIndex < portadas.length - 3) {
       setImgIndex((pv) => pv + 1);
     } else if (x >= DRAG_BUFFER && imgIndex > 0) {
       setImgIndex((pv) => pv - 1);

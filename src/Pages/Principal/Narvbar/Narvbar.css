@@ -24,17 +24,17 @@
 .navbar-sub-contenedor {
   display: flex;
   align-items: center;
-  gap: 55px;
+  gap: 40px;
 }
 
 .menu {
   width: 100px;
-  height: 41px;
+  height: 30px;
   display: flex;
   align-items: center;
   border-radius: 20.5px;
   background: linear-gradient(45deg, #5CE8B1, #2E1D4B);
-  padding: 20px;
+  padding: 40px;
 }
 
 .menu p {
@@ -51,15 +51,15 @@
 
 .navbar ul {
   display: flex;
-  gap: 54px;
+  gap: 20px;
   font-size: 18px;
   font-weight: 600;
   color: white;
 }
 
-.nav-animado a {
+.nav-animado {
   top: 5px;
-  left: 50px;
+  left: 20px;
   padding: 0 0.5em;
   position: relative;
   text-decoration: none;
@@ -68,7 +68,7 @@
   overflow: hidden;
 }
 
-.nav-animado a:before {
+.nav-animado :before {
   position: absolute;
   content: "";
   width: 100%;
@@ -81,12 +81,12 @@
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-animado a:hover:before {
+.nav-animado :hover:before {
   visibility: visible;
   transform: scaleX(2);
 }
 
-.nav-animado a:hover {
+.nav-animado :hover {
   color: #5CE8B1;
 }
 

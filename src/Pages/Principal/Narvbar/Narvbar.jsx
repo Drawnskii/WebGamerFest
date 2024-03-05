@@ -13,21 +13,16 @@ const Navbar = ({ handdleContenido }) => {
             <img src={logogamer} alt="Logo" />
           </div>
           <ul className="nav-animado">
-            <li>
-              <a href="#!" onClick={() => handdleContenido(5)}>
+              <Link to="/login " className="nav-animado">
                 HOME
-              </a>
-            </li>
-            <li>
-              <a href="#!" onClick={() => handdleContenido(1)}>
+              </Link>
+
+              <Link to="/login " className="nav-animado">
                 SOBRE NOSOTROS
-              </a>
-            </li>
-            <li>
-              <a href="#!" onClick={() => handdleContenido(5)}>
+              </Link>
+              <Link to="/login " className="nav-animado">
                 CONTACTANOS
-              </a>
-            </li>
+                </Link>
           </ul>
           <div className="botones-derecha">
             {/* Utiliza Link para el botón de Iniciar Sesión */}
