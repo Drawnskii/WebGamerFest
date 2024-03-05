@@ -9,31 +9,31 @@ function Contacto() {
       <div className="flex flex-col space-y-6 w-full max-h-full max-w-4xl p-8">
         <div className="flex flex-col space-y-10 justify-between">
           <div>
-            <h1 className="font-bold text-4xl tracking-wide">Contáctanos</h1>
-            <p className="pt-2">
+            <h1 className="font-bold text-4xl tracking-wide text-white">Contáctanos</h1>
+            <p className="pt-2 text-white">
               Puedes cominicarte con nosotros por medio de los siguientes
               medios.
             </p>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 text-white">
             <div className="text-xl">
               <IoIosCall />
             </div>
             <span>+593 95875863</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 text-white">
             <div className="text-xl">
               <IoMdMail />
             </div>
             <span>contacto@gmail.com</span>
           </div>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 text-white">
             <div className="text-xl">
               <IoLocation />
             </div>
             <span>12986, ESPE, Campus Guillermo Rodriguez Lara</span>
           </div>
-          <div className="flex space-x-2 pt-10 text-lg">
+          <div className="flex space-x-2 pt-10 text-lg text-white">
             <FaFacebook />
             <FaTwitter />
             <FaInstagram />
@@ -41,7 +41,7 @@ function Contacto() {
           </div>
         </div>
       </div>
-      <div className="bg-soft-green text-gray-600 space-y-6 w-96 p-8">
+      <div className="bg-soft-green text-white space-y-6 w-96 p-8">
         <form action="" className="flex flex-col space-y-4 max-h-full">
           <div>
             <label for="" className="text-sm">
@@ -73,7 +73,7 @@ function Contacto() {
               className="ring-1 ring-gray-300 w-full mt-2 rounded-md px-4 py-2 outline-none focus:ring"
             ></textarea>
           </div>
-          <button className="inline-block self-end bg-[#438439] text-white font-bold rounded-lg px-6 py-2">
+          <button className="inline-block self-end bg-[#5ce8b1] text-[#2e1d4b] font-bold rounded-lg px-6 py-2">
             Enviar Mensaje
           </button>
         </form>
